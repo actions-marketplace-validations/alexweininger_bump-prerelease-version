@@ -46,6 +46,7 @@ function run() {
         try {
             const currentVersion = (yield exec('npm', ['pkg', 'get', 'version'])).replace(/['"]+/g, '');
             const semver = new semver_1.default(currentVersion);
+            core.setOutput('old-version', semver.format());
             const newVersion = semver.inc('prepatch');
             const newVersionStr = newVersion.format();
             const newVersionAlpha = `${newVersionStr.substring(0, newVersionStr.length - 2)}-alpha`;

@@ -6,6 +6,9 @@ async function run(): Promise<void> {
     try {
         const currentVersion: string = (await exec('npm', ['pkg', 'get', 'version'])).replace(/['"]+/g, '');
         const semver: SemVer = new SemVer(currentVersion);
+
+        core.setOutput('old-version', semver.format());
+
         const newVersion: SemVer = semver.inc('prepatch');
 
         const newVersionStr: string = newVersion.format();

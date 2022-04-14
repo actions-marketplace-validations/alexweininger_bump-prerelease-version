@@ -9,6 +9,8 @@ branding:
 outputs:
   new-version: # id of the output
     description: 'The new package version'
+  old-version: # id of the output
+    description: 'The old package version'
 
 runs:
   using: 'node16'
