@@ -4,7 +4,7 @@ import SemVer from 'semver/classes/semver';
 
 async function run(): Promise<void> {
     try {
-        const currentVersion: string = await exec('npm', ['pkg', 'get', 'version']);
+        const currentVersion: string = (await exec('npm', ['pkg', 'get', 'version'])).replace('"', '');
 
         const semver: SemVer = new SemVer(currentVersion);
         const newVersion: SemVer = semver.inc('prepatch');
