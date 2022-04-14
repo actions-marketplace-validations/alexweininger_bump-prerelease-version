@@ -44,7 +44,7 @@ const semver_1 = __importDefault(__nccwpck_require__(88));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const currentVersion = (yield exec('npm', ['pkg', 'get', 'version'])).replace('"', '');
+            const currentVersion = (yield exec('npm', ['pkg', 'get', 'version'])).replace(/['"]+/g, '');
             const semver = new semver_1.default(currentVersion);
             const newVersion = semver.inc('prepatch');
             const newVersionStr = newVersion.format();
