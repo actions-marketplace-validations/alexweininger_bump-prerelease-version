@@ -47,11 +47,8 @@ function run() {
             const currentVersion = (yield exec('npm', ['pkg', 'get', 'version'])).replace(/['"]+/g, '');
             const semver = new semver_1.default(currentVersion);
             core.setOutput('old-version', semver.format());
-            const newVersion = semver.inc('prepatch');
-            const newVersionStr = newVersion.format();
-            const newVersionAlpha = `${newVersionStr.substring(0, newVersionStr.length - 2)}-alpha`;
-            yield exec('npm', ['version', newVersionAlpha, '--no-git-tag-version']);
-            core.setOutput('new-version', newVersionAlpha);
+            const output = yield exec('npm', ['version', 'prerelease', '--no-git-tag-version', '--preid', 'alpha']);
+            core.setOutput('new-version', output);
         }
         catch (error) {
             if (error instanceof Error) {
