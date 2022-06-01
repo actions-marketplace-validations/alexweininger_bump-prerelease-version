@@ -1,8 +1,8 @@
 {
   "name": "bump-prerelease-version",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Bumps package version from 0.1.1 to 0.1.2-alpha",
-  "main": "lib/main.js",
+  "main": "dist/index.js",
   "scripts": {
     "package": "npx ncc build",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,8 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.6.0",
-    "@actions/exec": "^1.1.1",
-    "semver": "^7.3.7"
+    "@actions/exec": "^1.1.1"
   },
   "devDependencies": {
     "@types/node": "^17.0.24",

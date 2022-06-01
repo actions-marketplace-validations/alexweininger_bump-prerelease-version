@@ -1,16 +1,11 @@
 import * as core from '@actions/core';
 import { exec as execUtil, ExecOptions } from '@actions/exec';
-import SemVer from 'semver/classes/semver';
 
 async function run(): Promise<void> {
     try {
         const currentVersion: string = (await exec('npm', ['pkg', 'get', 'version'])).replace(/['"]+/g, '');
-        const semver: SemVer = new SemVer(currentVersion);
-
-        core.setOutput('old-version', semver.format());
-
+        core.setOutput('old-version', currentVersion);
         const output = await exec('npm', ['version', 'prerelease', '--no-git-tag-version', '--preid', 'alpha']);
-
         core.setOutput('new-version', output);
     } catch (error) {
         if (error instanceof Error) {
