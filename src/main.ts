@@ -9,14 +9,9 @@ async function run(): Promise<void> {
 
         core.setOutput('old-version', semver.format());
 
-        const newVersion: SemVer = semver.inc('prepatch');
+        const output = await exec('npm', ['version', 'prerelease', '--no-git-tag-version', '--preid', 'alpha']);
 
-        const newVersionStr: string = newVersion.format();
-        const newVersionAlpha: string = `${newVersionStr.substring(0, newVersionStr.length - 2)}-alpha`;
-
-        await exec('npm', ['version', newVersionAlpha, '--no-git-tag-version']);
-
-        core.setOutput('new-version', newVersionAlpha);
+        core.setOutput('new-version', output);
     } catch (error) {
         if (error instanceof Error) {
             core.setFailed(error.message);
