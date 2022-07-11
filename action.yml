@@ -1,5 +1,5 @@
-name: "Version Bump PR"
-description: "Creates a PR for bumping the version"
+name: "Bump prerelease version"
+description: "Bumps the prerelease version with npm"
 author: "Alex Weininger <@alexweininger>"
 
 branding:
